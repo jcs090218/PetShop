@@ -1,6 +1,0 @@
-
-
-
-
-* Ground Collider
-* Menu Scene
