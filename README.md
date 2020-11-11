@@ -17,7 +17,7 @@ by Shen, Jen-Chieh.
 
 ## Screenshot
 
-<img src="./screen_shot/demo.gif"/>
+<img src="./etc/demo.gif"/>
 
 ## Todo List
 
