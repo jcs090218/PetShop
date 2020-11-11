@@ -8,7 +8,7 @@
 -- ========================================================================
 
 
-require ("JCSLOVELua_Framework/code/jcslove")
+require ("JCSLOVELua/code/jcslove")
 
 require ("stdafx")
 
