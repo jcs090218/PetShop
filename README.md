@@ -15,6 +15,11 @@ carefully.
 
 by Shen, Jen-Chieh.
 
-### Screenshot
+## Screenshot
 
 <img src="./screen_shot/demo.gif"/>
+
+## Todo List
+
+- [ ] Ground Collider
+- [ ] Menu Scene
