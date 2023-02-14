@@ -1,6 +1,5 @@
 @echo off
 
-
 echo -------------------------------------------------------------------
 echo                   Emacs_Build_JCSJava version 1.0
 echo          Copyright (c) by Jen-Chieh Shen(jcs090218@gmail.com)
@@ -8,10 +7,12 @@ echo -------------------------------------------------------------------
 echo.
 echo.
 
+:: Back up to project root
+cd ..
 
-REM ##################
-REM set path macros.
-REM ##################
+:: ##################
+:: set path macros.
+:: ##################
 set BUILDNAME="PetShop"
 set BUILDLOVEDIR="%cd%\build\love"
 set BUILDEXEDIR="%cd%\build\exe"
@@ -23,16 +24,14 @@ set TEMPDIR="C:\temp738"
 mkdir %TEMPDIR%
 xcopy /s %FILETOZIP% %TEMPDIR%
 
-
-REM #################################################################################
-REM IMPORTANT(jenchieh): 這裡使用了多線程,所已主線成可能已經結束 但壓縮還沒有結束...
-REM #################################################################################
+:: #################################################################################
+:: IMPORTANT(jenchieh): 這裡使用了多線程,所已主線成可能已經結束 但壓縮還沒有結束...
+:: #################################################################################
 set COMPRESSTIME=15000
 
-
-REM ##############################
-REM create the zip vb script.
-REM ##############################
+:: ##############################
+:: create the zip vb script.
+:: ##############################
 echo [build.bat]: Creating the vb script...
 echo Set objArgs = WScript.Arguments > _zipIt.vbs
 echo InputFolder = objArgs(0) >> _zipIt.vbs
@@ -43,53 +42,50 @@ echo Set source = objShell.NameSpace(InputFolder).Items >> _zipIt.vbs
 echo objShell.NameSpace(ZipFile).CopyHere(source) >> _zipIt.vbs
 echo wScript.Sleep %COMPRESSTIME% >> _zipIt.vbs
 
-
-REM ################
-REM zip the folder
-REM ################
+:: ################
+:: zip the folder
+:: ################
 echo [build.bat]: Start zipping the target file and output the file to destination folder...
 CScript  _zipIt.vbs  %TEMPDIR%  %FILEOUT%
 
-
-REM #############################
-REM remove all the temp files.
-REM #############################
+:: #############################
+:: remove all the temp files.
+:: #############################
 echo [build.bat]: Start Removing all the temporary folders and files...
 rmdir "%TEMPDIR%" /s /q
 
-
-REM #############################
-REM Start the build
-REM #############################
+:: #############################
+:: Start the build
+:: #############################
 echo [build.bat]: Start the building the command/executable file.
 
-REM create the love directory.
+:: create the love directory.
 mkdir %BUILDLOVEDIR%
 
-REM create the executable directory.
+:: create the executable directory.
 mkdir %BUILDEXEDIR%
 
-REM push the current directory and goto that directory
+:: push the current directory and goto that directory
 pushd build\
 
-REM goto the love directory..
+:: goto the love directory..
 cd %BUILDLOVEDIR%
 
-REM
-REM delete the previous build.
-REM
+::
+:: delete the previous build.
+::
 del %BUILDNAME%.love
 
-REM zip to love
+:: zip to love
 rename %BUILDNAME%.zip %BUILDNAME%.love
 
-REM build using love 2d engine compiler?
+:: build using love 2d engine compiler?
 copy /b love.exe+%BUILDNAME%.love %BUILDNAME%.exe
 
-REM move file to command/execuatble directory
+:: move file to command/execuatble directory
 move %BUILDNAME%.exe %BUILDEXEDIR%
 
-REM back to root directory.
+:: back to root directory.
 popd
 
 echo.
@@ -99,4 +95,4 @@ echo                               END
 echo -------------------------------------------------------------------
 echo.
 
-REM pause
+:: pause
