@@ -13,6 +13,9 @@ echo -------------------------------------------------------------------
 echo.
 echo.
 
+:: Back up to project root
+cd ..
+
 :: "D:\Program Files\LOVE\love.exe" "%CD%"
 
 "C:\Program Files\LOVE\love.exe" "%CD%"
