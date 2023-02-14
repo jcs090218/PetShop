@@ -1,4 +1,5 @@
+# ignore build
+/build
+
 # Lib has not complete yet.
 /JCSLua_Lib
-
-
